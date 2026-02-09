@@ -67,7 +67,7 @@
 <body>
 
 <div class="card">
-  <h1 id="title">Will you be my Valentine Mr.Kannan? 💕</h1>
+  <h1 id="title">Will you be my Valentine Mr.kannan? 💕</h1>
 
   <div class="buttons" id="buttons">
     <button class="yes" onclick="startQuestions()">Yes 💖</button>
@@ -76,12 +76,13 @@
 
   <div id="questions" class="hidden">
     <div class="question" id="questionText"></div>
-    <button class="yes" onclick="nextQuestion()">Yes 😍</button>
+    <button class="yes" id="nextBtn" onclick="nextQuestion()">Yes 😍</button>
   </div>
 </div>
 
 <script>
   const noBtn = document.getElementById("noBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
   function moveNoButton() {
     const x = Math.random() * 200;
@@ -117,6 +118,10 @@
     if (index < questions.length) {
       document.getElementById("questionText").innerText = questions[index];
     } else {
+      // Remove the Yes button
+      nextBtn.style.display = "none";
+
+      // Show the final romantic message
       document.getElementById("questionText").innerHTML =
         "YAYYY!!! 🥰💖<br><br>" +
         "This was our <b>first Valentine</b>… and also our <b>last one as singles</b> ❤️<br>" +
@@ -129,4 +134,3 @@
 
 </body>
 </html>
-
