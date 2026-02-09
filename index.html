@@ -83,11 +83,23 @@
 <script>
   const noBtn = document.getElementById("noBtn");
 
-  noBtn.addEventListener("mouseover", () => {
-    noBtn.style.left = Math.random() * 200 + "px";
-    noBtn.style.top = Math.random() * 80 + "px";
+  function moveNoButton() {
+    const x = Math.random() * 200;
+    const y = Math.random() * 80;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  // Desktop: when mouse gets close
+  noBtn.addEventListener("mouseover", moveNoButton);
+
+  // Mobile & click chaos
+  noBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    moveNoButton();
   });
 
+  // Questions logic
   const questions = [
     "Do you promise to steal my hoodies? 🧥💖",
     "Will you go on cute dates with me? 🍕🎬",
@@ -110,11 +122,13 @@
     } else {
       document.getElementById("questionText").innerHTML =
         "YAYYY!!! 🥹💘<br><br>" +
-        "You just made my **first Valentine** unforgettable ❤️<br>" +
+        "You just made my <b>first Valentine</b> unforgettable ❤️<br>" +
         "Get ready for love, laughs, and a lot of memories together 🌹✨";
     }
   }
 </script>
 
+
 </body>
 </html>
+
