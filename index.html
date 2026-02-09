@@ -35,6 +35,7 @@
     border-radius: 25px;
     border: none;
     cursor: pointer;
+    transition: all 0.1s ease;
   }
 
   .yes {
@@ -44,12 +45,16 @@
 
   .no {
     background: #ccc;
-    position: absolute;
+    position: relative; /* relative initially for alignment */
   }
 
   .buttons {
-    position: relative;
+    display: flex;             /* align horizontally */
+    justify-content: center;   /* center horizontally */
+    align-items: center;       /* center vertically */
+    gap: 20px;                 /* space between buttons */
     height: 120px;
+    position: relative;        /* for NO button movement */
   }
 
   .hidden {
@@ -86,22 +91,23 @@
 
   // Function to randomly move the NO button
   function moveNoButton() {
-    const x = Math.random() * 200;
-    const y = Math.random() * 80;
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    const x = Math.random() * 200 - 100; // left/right offset
+    const y = Math.random() * 60 - 30;   // up/down offset
+    noBtn.style.position = "absolute";   // switch to absolute when moving
+    noBtn.style.left = `calc(50% + ${x}px)`; 
+    noBtn.style.top = `calc(50% + ${y}px)`;
   }
 
-  // Make NO button move on hover (desktop)
+  // Move NO button on hover (desktop)
   noBtn.addEventListener("mouseover", moveNoButton);
 
-  // Make NO button move on click/tap (mobile)
+  // Move NO button on click/tap (mobile)
   noBtn.addEventListener("click", (e) => {
     e.preventDefault();
     moveNoButton();
   });
 
-  // Make NO button move on touchstart (mobile fingers)
+  // Move NO button on touchstart (mobile fingers)
   noBtn.addEventListener("touchstart", (e) => {
     e.preventDefault();
     moveNoButton();
