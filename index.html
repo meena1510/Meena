@@ -1,106 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Be My Valentine 💖</title>
-  <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: "Comic Sans MS", cursive, sans-serif;
-    }
+<meta charset="UTF-8">
+<title>My First Valentine 💖</title>
 
-    .card {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-      width: 320px;
-    }
+<style>
+  body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: "Comic Sans MS", cursive;
+  }
 
-    h1 {
-      color: #ff4d6d;
-      margin-bottom: 30px;
-    }
+  .card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 320px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  }
 
-    .buttons {
-      position: relative;
-      height: 120px;
-    }
+  h1 {
+    color: #ff4d6d;
+  }
 
-    button {
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
+  button {
+    margin: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+  }
 
-    #yesBtn {
-      background: #ff4d6d;
-      color: white;
-    }
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
 
-    #yesBtn:hover {
-      background: #ff3355;
-      transform: scale(1.05);
-    }
+  .no {
+    background: #ccc;
+    position: absolute;
+  }
 
-    #noBtn {
-      background: #ccc;
-      color: #333;
-      position: absolute;
-      left: 180px;
-      top: 0;
-    }
+  .buttons {
+    position: relative;
+    height: 120px;
+  }
 
-    .message {
-      display: none;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #ff4d6d;
-    }
-  </style>
+  .hidden {
+    display: none;
+  }
+
+  .question {
+    font-size: 18px;
+    color: #ff4d6d;
+    margin-bottom: 20px;
+  }
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Will you be my Valentine? 💕</h1>
 
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 💔</button>
-    </div>
+<div class="card">
+  <h1 id="title">Will you be my Valentine? 💕</h1>
 
-    <div class="message" id="message">
-      YAYYY!!! 🥰💘  
-      You just made me the happiest person ever!  
-      I owe you chocolates, hugs, and infinite love 💋🍫
-    </div>
+  <div class="buttons" id="buttons">
+    <button class="yes" onclick="startQuestions()">Yes 💖</button>
+    <button class="no" id="noBtn">No 💔</button>
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const message = document.getElementById("message");
+  <div id="questions" class="hidden">
+    <div class="question" id="questionText"></div>
+    <button class="yes" onclick="nextQuestion()">Yes 😍</button>
+  </div>
+</div>
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 200;
-      const y = Math.random() * 80;
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    });
+<script>
+  const noBtn = document.getElementById("noBtn");
 
-    yesBtn.addEventListener("click", () => {
-      message.style.display = "block";
-      yesBtn.style.display = "none";
-      noBtn.style.display = "none";
-    });
-  </script>
+  noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 200 + "px";
+    noBtn.style.top = Math.random() * 80 + "px";
+  });
+
+  const questions = [
+    "Do you promise to steal my hoodies? 🧥💖",
+    "Will you go on cute dates with me? 🍕🎬",
+    "Can I be your favorite notification? 📱🥰",
+    "Do you accept unlimited love and bad jokes from me? 😄❤️"
+  ];
+
+  let index = 0;
+
+  function startQuestions() {
+    document.getElementById("buttons").style.display = "none";
+    document.getElementById("questions").classList.remove("hidden");
+    document.getElementById("questionText").innerText = questions[index];
+  }
+
+  function nextQuestion() {
+    index++;
+    if (index < questions.length) {
+      document.getElementById("questionText").innerText = questions[index];
+    } else {
+      document.getElementById("questionText").innerHTML =
+        "YAYYY!!! 🥹💘<br><br>" +
+        "You just made my **first Valentine** unforgettable ❤️<br>" +
+        "Get ready for love, laughs, and a lot of memories together 🌹✨";
+    }
+  }
+</script>
+
 </body>
 </html>
