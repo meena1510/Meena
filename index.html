@@ -67,7 +67,7 @@
 <body>
 
 <div class="card">
-  <h1 id="title">Will you be my Valentine Mr.kannan? 💕</h1>
+  <h1 id="title">Will you be my Valentine Mr.Kannan? 💕</h1>
 
   <div class="buttons" id="buttons">
     <button class="yes" onclick="startQuestions()">Yes 💖</button>
@@ -84,6 +84,7 @@
   const noBtn = document.getElementById("noBtn");
   const nextBtn = document.getElementById("nextBtn");
 
+  // Function to randomly move the NO button
   function moveNoButton() {
     const x = Math.random() * 200;
     const y = Math.random() * 80;
@@ -91,12 +92,22 @@
     noBtn.style.top = y + "px";
   }
 
+  // Make NO button move on hover (desktop)
   noBtn.addEventListener("mouseover", moveNoButton);
+
+  // Make NO button move on click/tap (mobile)
   noBtn.addEventListener("click", (e) => {
     e.preventDefault();
     moveNoButton();
   });
 
+  // Make NO button move on touchstart (mobile fingers)
+  noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveNoButton();
+  });
+
+  // Questions array
   const questions = [
     "Do you promise to steal my hoodies? 🧥💖",
     "Will you go on cute dates with me? 🍕🎬",
@@ -107,12 +118,14 @@
 
   let index = 0;
 
+  // Start questions when YES is clicked
   function startQuestions() {
     document.getElementById("buttons").style.display = "none";
     document.getElementById("questions").classList.remove("hidden");
     document.getElementById("questionText").innerText = questions[index];
   }
 
+  // Show next question or final message
   function nextQuestion() {
     index++;
     if (index < questions.length) {
@@ -121,7 +134,7 @@
       // Remove the Yes button
       nextBtn.style.display = "none";
 
-      // Show the final romantic message
+      // Show final romantic message
       document.getElementById("questionText").innerHTML =
         "YAYYY!!! 🥰💖<br><br>" +
         "This was our <b>first Valentine</b>… and also our <b>last one as singles</b> ❤️<br>" +
